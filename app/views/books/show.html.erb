@@ -1,0 +1,29 @@
+<% provide :title, @book.title %>
+<h2><%= @book.title %></h2>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+    </section>
+    <section>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <div class="col-md-12">
+      <div class="col-md-4">
+        <img id="book-image" src="../assets/<%= @book.image %>" />
+      </div>
+      <div class="col-md-8">
+        <div class="col-md-12">Title : <%= @book.title %></div>
+        <div class="col-md-12">Author : <%= @book.author %></div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div>Reviews</div>
+      <% if @reviews.any? %>
+        Has <%= @reviews.count %> reviews
+      <% else %>
+        empty
+      <% end %>
+    </div>
+  </div>
+</div> 

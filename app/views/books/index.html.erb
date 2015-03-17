@@ -1,0 +1,23 @@
+<% provide :title, "All Books" %>
+<h1>All Books</h1>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+    </section>
+    <section>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <div class="books">
+      <div class="col-md-12">
+        <span class="col-md-6">Title</span>
+        <span class="col-md-6">Author</span>
+      </div>
+      <div class="col-md-12">
+        <%= render @books %>
+      </div>
+      <%= will_paginate %>
+    </div>
+  </div>
+</div> 
