@@ -1,0 +1,24 @@
+<li id="comment-<%= comment.id %>">
+  <span class="content"><%= comment.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words comment.created_at %> ago.
+    <%= link_to_if current_user == comment.user, 
+          "edit",
+          edit_review_comment_path(comment.review, comment), 
+          remote: true %>
+    ||
+    <%= link_to_if current_user == comment.user,
+          "delete",
+          [comment.review, comment],  remote: true, 
+          method: :delete, 
+          data: {confirm: "You sure?"} %>
+
+    <div id="edit_comment-<%= comment.id %>" style="display:none;">
+      <%= form_for [comment.review, comment], remote: true do |f| %>
+        <%= f.hidden_field :review_id, value: @review.id %>
+        <%= f.text_area :content %>
+        <%= f.submit "Save changes" %>
+      <% end %>
+    </div>
+  </span>
+</li>

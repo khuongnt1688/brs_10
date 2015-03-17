@@ -3,7 +3,7 @@
 <div class="row">
   <%= form_for @review do |f| %>
     <%= f.label :rating %>
-    <%= f.number_field :rating, nil, 0..10 %>
+    <%= f.number_field :rating, in: 0..10 %>
 
     <%= f.label :content %>
     <%= f.text_area :content %>

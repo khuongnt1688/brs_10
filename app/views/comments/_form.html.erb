@@ -1,0 +1,6 @@
+<%= form_for [@review, @comment], remote: true do |f| %>
+  <div class="field">
+    <%= f.text_area :content, id: "input_text", placeholder: "Write your comment..." %>
+  </div>
+  <%= f.submit "Post comment", class: "btn btn-primary" %>
+<% end %>

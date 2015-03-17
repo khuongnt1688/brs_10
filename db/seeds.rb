@@ -28,3 +28,8 @@ categories = Category.order(:created_at).take(10)
     Book.create! title: book, author: author, publish_date: "2015-03-17", number_of_pages: 300, image: img, category_id: category.id
   end
 end
+
+3.times do |n|
+  content = Faker::Lorem.paragraph
+  Review.create! user: User.first, book: Book.first, content: content, rating: 5
+end
