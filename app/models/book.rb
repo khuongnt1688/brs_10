@@ -18,4 +18,9 @@ class Book < ActiveRecord::Base
       all
     end
   end
+
+  def state user
+    book_state = BookState.find_by book: self, user: user
+    book_state.nil? ? "unread" : book_state.state
+  end
 end
