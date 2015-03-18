@@ -5,7 +5,7 @@ User.create!(name:  "Example User",
 
 10.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n + 1}@railstutorial.org"
   password = "password"
   User.create!(name:  name,
                email: email,
@@ -14,7 +14,17 @@ User.create!(name:  "Example User",
 end
 
 15.times do |n|
-  content = Faker::Name.title+" #{n+1}"
+  content = Faker::Name.title + " #{n + 1}"
   image = "default_category.png"
-  Category.create!(content: content, image: image)
+  Category.create! content: content, image: image
+end
+
+categories = Category.order(:created_at).take(10)
+15.times do |n|
+  categories.each do |category|
+    book = Faker::Name.title + "#{category.id}.#{n + 1}"
+    author = Faker::Name.name
+    img = "default_book.png"
+    Book.create! title: book, author: author, publish_date: "2015-03-17", number_of_pages: 300, image: img, category_id: category.id
+  end
 end
