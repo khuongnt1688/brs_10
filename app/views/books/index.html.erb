@@ -1,5 +1,4 @@
 <% provide :title, "All Books" %>
-<h1>All Books</h1>
 
 <div class="row">
   <aside class="col-md-4">
@@ -9,15 +8,26 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <div class="books">
+    <%= form_tag books_path, method: 'get', id: "books_search" do %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
       <div class="col-md-12">
-        <span class="col-md-6">Title</span>
-        <span class="col-md-6">Author</span>
-      </div>
+        <div class="col-md-1">
+          Search
+        </div>
+        <div class="col-md-6">
+          <%= text_field_tag :search, params[:search] %>
+        </div>
+        <div class="col-md-3">
+          <%= select_tag("filter", options_for_select([['Title', 1], ['Author', 2]], 1)) %>
+        </div>
+        <div class="col-md-2">
+          <%= submit_tag "Search", :name => nil %>
+        </div>
+      </div>  
       <div class="col-md-12">
-        <%= render @books %>
+        <div id="books_div"><%= render 'list_books' %></div>
       </div>
-      <%= will_paginate %>
-    </div>
+    <% end %>
   </div>
-</div> 
+</div>
