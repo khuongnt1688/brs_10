@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root  'static_pages#home'
+  
   get   'help'    => 'static_pages#help'
   get   'about'   => 'static_pages#about'
   get   'contact' => 'static_pages#contact'
@@ -10,6 +11,10 @@ Rails.application.routes.draw do
   resources :books
   resources :reviews do
     resources :comments
+  end
+
+  namespace :admin do
+    root 'static_pages#home'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

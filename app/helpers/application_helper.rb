@@ -15,4 +15,8 @@ module ApplicationHelper
     direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
     link_to title, params.merge(sort: column, direction: direction, page: nil), {class: css_class}
   end
+
+  def logged_in_admin?
+    user_signed_in? && current_user.role == "admin"
+  end
 end
