@@ -23,4 +23,7 @@ class User < ActiveRecord::Base
   def is_admin?
     role == 'admin'
   end
+
+  scope :search_by, ->name {where('name LIKE ?', "%#{name}%")}
+  
 end

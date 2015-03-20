@@ -1,0 +1,15 @@
+<% unless current_user == user %>
+  <tr>
+    <td>
+      <div class="col-md-12">
+        <%= link_to(user.name, admin_user_path(user)) %>
+      </div>
+    </td>
+    <td>
+      <div class="col-md-12">
+        <%= link_to("delete", admin_user_path(user), method: :delete, 
+                                     data: {confirm: "you sure?"}) %>
+      </div>
+    </td>
+  </tr>
+<% end %>
