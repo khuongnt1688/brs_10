@@ -5,11 +5,14 @@
   </aside>
   <div class="col-md-8">
     <section>
-      <h3><%= "Review on #{@review.book.title}" %></h3>
+      <h3>
+        <%= "Review on " %>
+        <%= link_to @review.book.title, @review.book %>
+      </h3>
       <h3><%= "Rating: #{@review.rating}/10" %></h3>
       <p>
         <%= @review.content %>
-        <%= link_to "edit", edit_review_path(@review) %>
+        <%= link_to "edit", edit_book_review_path(@review.book, @review) %>
       </p>
     </section>
     <section>
