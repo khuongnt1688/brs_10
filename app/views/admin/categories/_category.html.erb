@@ -1,0 +1,16 @@
+<tr id="category_<%= category.id %>">
+  <td>
+    <%= image_tag "#{category.image}", size: "32x32", alt: "Category", class: "img-rounded" %>
+  </td>
+  <td>
+    <div class="col-md-12">
+      <%= link_to category.content, edit_admin_category_path(category) %>
+    </div>
+  </td>
+  <td>
+  <div class="col-md-12">
+    <%= link_to "delete", admin_category_path(category), method: :delete,
+    class: "btn btn-danger", remote: true, data: {confirm: "you sure?"} %>
+  </div>
+  </td>
+</tr>

@@ -1,0 +1,32 @@
+<% provide :title, "Manager Categories" %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <div div class="col-md-12">
+      <%= form_tag admin_categories_path, method: 'get', id: "categories_search" do %>
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+        <div class="col-md-12 well">
+          <div class="col-md-3">
+            Search
+          </div>
+          <div class="col-md-6">
+            <%= text_field_tag :search, params[:search] %>
+          </div>
+          <div class="col-md-2">
+            <%= submit_tag "Search", class: "btn btn-primary" %>
+          </div>
+          <div class="col-md-1"></div>
+        </div>  
+        <div class="col-md-12">
+          <div id="categories_div"><%= render 'list_categories' %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

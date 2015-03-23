@@ -1,0 +1,27 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<h1>Manager Categories</h1>
+
+<% if @categories.any? %>
+  <%= will_paginate @categories %>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><div class="col-md-12"> Image </div></th>
+        <th><div class="col-md-12"><%= sortable "content" %></div></th>
+        <th><div class="col-md-12"> Action </div></th>
+      </tr>
+    </thead>  
+    <tbody class="category-index">
+      <%= render @categories %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @categories %>
+<% else %>
+  <h2 style="center">Empty</h2>
+<% end %>
+<div class="col-md-12">
+  <%= link_to "add new category", new_admin_category_path, class: "btn btn-primary" %>
+</div>
