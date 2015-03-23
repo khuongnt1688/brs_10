@@ -1,0 +1,4 @@
+$('#reviews').append("<%= j render @review %>");
+$('#count').html("Has <%= @book.reviews.count %> reviews");
+$('#review_rating').val("");
+$('#review_content').val("");

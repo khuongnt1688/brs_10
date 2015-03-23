@@ -25,5 +25,9 @@ class User < ActiveRecord::Base
   end
 
   scope :search_by, ->name {where('name LIKE ?', "%#{name}%")}
+
+  def is_user? user
+    self == user
+  end
   
 end

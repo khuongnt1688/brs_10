@@ -3,20 +3,24 @@ class ReviewsController < ApplicationController
   before_action :correct_user!, only: [:edit, :update, :destroy]
 
   def create
-    @review = current_user.reviews.build review_params
+    @book = Book.find params[:book_id]
+    @review = Review.new review_params
+    @review.user = current_user
+    @review.book = @book
     if @review.save
-      flash[:success] = "Review created!"
-      redirect_to @review
-    else
-      flash[:error] = "Cannot send review"
-      redirect_to request.referrer || root_url
+      respond_to do |format|
+        format.html {redirect_to @book}
+        format.js
+      end
     end
   end
 
   def destroy
+    @review = Review.find params[:id]
     @review.destroy
-    flash[:success] = "Review destroyed!"
-    redirect_to request.referrer || root_url
+    respond_to do |format|
+      format.js
+    end
   end
 
   def show
@@ -26,16 +30,16 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @book = Book.find params[:book_id]
     @review = Review.find params[:id]
   end
 
   def update
+    @book = Book.find params[:book_id]
     @review = Review.find params[:id]
     if @review.update_attributes review_params
       flash[:success] = "Review updated!"
-      redirect_to @review
-    else
-      render "edit"
+      redirect_to [@book, @review]
     end
   end
 

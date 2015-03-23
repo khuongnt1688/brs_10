@@ -18,12 +18,17 @@
       </div>
     </div>
     <div class="col-md-12">
-      <div>Reviews</div>
+      <h3>Reviews</h3>
       <% if @reviews.any? %>
-        Has <%= @reviews.count %> reviews
+        <strong><div id="count">Has <%= @reviews.count %> reviews</div></strong>
+        <div id="reviews">
+          <%= render @reviews %>
+        </div>
       <% else %>
         empty
       <% end %>
+      <h3>Write your review</h3>
+      <%= render "reviews/form" %>
     </div>
   </div>
 </div> 

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :users
   resources :categories
-  resources :books
+  resources :books do
+    resources :reviews
+  end
   resources :reviews do
     resources :comments
   end
