@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get   'about'   => 'static_pages#about'
   get   'contact' => 'static_pages#contact'
 
+  match '/users/:id/:type', to: 'users#show', via: :get
+  
   resources :users do
     get 'history' => 'book_states#index'
     resources :requests
@@ -17,6 +19,15 @@ Rails.application.routes.draw do
     resources :reviews
     resources :book_states
   end
+
+  resources :users do
+      member do
+      get :following, :followers
+    end
+  end
+  
+  resources :categories
+  resources :books
   resources :reviews do
     resources :comments
   end
@@ -27,4 +38,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :requests
   end
+
+  resources :relationships, only: [:create, :destroy, :show]
+
 end

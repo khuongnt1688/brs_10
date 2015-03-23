@@ -17,9 +17,10 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :book_states, dependent: :destroy
 
-  validates :name, length: {maximum: 100}        
+  validates :name, presence: true, uniqueness: true, length: {maximum: 100}        
   validates :avatar, presence: false, length: {maximum: 300}
   validates :role, presence: true, length: {maximum: 50}
+  validates :slug, presence: true, uniqueness: true
 
   def is_admin?
     role == 'admin'
@@ -30,5 +31,20 @@ class User < ActiveRecord::Base
   def is_user? user
     self == user
   end
-  
+
+  def follow other_user
+    active_relationships.create followed_id: other_user.id
+  end
+
+  def unfollow other_user
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following? other_user
+    following.include? other_user
+  end
+
+  def to_param
+    [id, name.parameterize].join("-")
+  end
 end

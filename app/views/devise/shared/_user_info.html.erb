@@ -1,0 +1,8 @@
+<% @user ||= current_user %>
+<h1>
+  <%= @user.avatar %>
+  <%= @user.name %>
+</h1>
+<% if user_signed_in? && current_user == @user %>
+  <%= link_to "Edit", edit_user_registration_path(@user) %>
+<% end %>
