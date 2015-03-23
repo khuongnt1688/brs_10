@@ -1,0 +1,4 @@
+<%= form_for [@book, @book_state], remote: true do |f| %>
+  <%= f.select :state, options_for_select(["unread", "reading", "read"])  %>
+  <%= f.submit "Change" %>
+<% end %>

@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_action :authenticate_user!, only: :show
 
   def index
     @books = Book.search(params[:search], params[:filter] ).order(sort_column + ' ' + sort_direction)
@@ -8,6 +9,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find params[:id]
+    @book_state = BookState.find_by book: @book, user: current_user
     @reviews = @book.reviews.paginate page: params[:page], per_page: 10
   end
 

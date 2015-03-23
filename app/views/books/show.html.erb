@@ -15,6 +15,11 @@
       <div class="col-md-8">
         <div class="col-md-12">Title : <%= @book.title %></div>
         <div class="col-md-12">Author : <%= @book.author %></div>
+        <div class="col-md-12">
+          <span id="book_state">State : <%= @book.state current_user %></span>
+          <%= link_to "change", new_or_edit_book_book_state_path(@book, @book_state), remote: true %>
+        </div>
+        <div id="book_state_form" class="col-md-12"></div>
       </div>
     </div>
     <div class="col-md-12">
