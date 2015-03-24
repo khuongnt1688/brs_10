@@ -1,0 +1,54 @@
+<% provide :title, @title %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+    </section>
+    <section>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h1><%= @title %></h1>
+    <div class="col-md-12">
+      <%= render 'shared/category_error_messages' %>
+      <div class="col-md-2"></div>
+      <div class="col-md-6">
+        <%= form_for [:admin, @category], html: {multipart: true} do |f| %>
+          <div class="col-md-12 well">
+            <%= f.label :content %>
+            <%= f.text_area :content, placeholder: "Compose new category...", class: 'form-control' %>
+          </div>
+          <div class="col-md-12 well">
+            <%= f.label :image %>
+            <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+          </div>
+          <div class="col-md-12 well">
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+      <% unless params[:id].blank? %>
+        <div class="col-md-4 well">
+          <label>Current Image</label>
+          <%= image_tag "#{@category.image}", alt: "Current Image", class: "img-polaroid" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-2"></div>
+      <div class="col-md-6 well">
+        <%= link_to "Manage categories", admin_categories_path, class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#category_picture').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
