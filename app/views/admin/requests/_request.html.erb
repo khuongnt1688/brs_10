@@ -1,0 +1,17 @@
+<tr id="request-<%= request.id %>">
+  <td><div class="col-md-1"><%= link_to request.user.name, request.user %></div></td>
+  <td><div class="col-md-1"><%= request.book_name %></div></td>
+  <td><div class="col-md-2"><%= request.author %></div></td>
+  <td><div class="col-md-4"><%= link_to request.book_url %></div></td>
+  <td><div id="request-<%= request.id %>-state" class="col-md-1"><%= request.state %></div></td>
+  <td><div class="col-md-3">
+    <%= form_for [:admin, request], remote: true do |f| %>
+      <%= f.hidden_field :state, value: "accept" %>
+      <%= f.submit "accept", class: "btn btn-primary" %>
+    <% end %>
+    <%= form_for [:admin, request], remote: true do |f| %>
+      <%= f.hidden_field :state, value: "decline" %>
+      <%= f.submit "decline", class: "btn btn-danger" %>
+    <% end %>
+  </div></td>
+</tr>
