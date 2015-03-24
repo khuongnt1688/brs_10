@@ -1,6 +1,11 @@
 class BookStatesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @user = User.find params[:user_id]
+    @book_states = BookState.read_history @user
+  end
+
   def new
     @book = Book.find params[:book_id]
     @book_state = BookState.new
