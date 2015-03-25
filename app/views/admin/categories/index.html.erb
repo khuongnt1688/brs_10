@@ -1,4 +1,4 @@
-<% provide :title, "Manager Users" %>
+<% provide :title, "Manager Categories" %>
 
 <div class="row">
   <aside class="col-md-4">
@@ -8,12 +8,12 @@
   </aside>
   <div class="col-md-8">
     <div div class="col-md-12">
-      <%= form_tag admin_users_path, method: 'get', id: "users_search" do %>
+      <%= form_tag admin_categories_path, method: 'get', id: "categories_search" do %>
         <%= hidden_field_tag :direction, params[:direction] %>
         <%= hidden_field_tag :sort, params[:sort] %>
         <div class="col-md-12 well">
           <div class="col-md-3">
-            <label>Search</label>
+            Search
           </div>
           <div class="col-md-6">
             <%= text_field_tag :search, params[:search] %>
@@ -24,7 +24,7 @@
           <div class="col-md-1"></div>
         </div>  
         <div class="col-md-12">
-          <div id="users_div"><%= render 'list_users' %></div>
+          <div id="categories_div"><%= render 'list_categories' %></div>
         </div>
       <% end %>
     </div>

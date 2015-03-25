@@ -40,4 +40,16 @@ $(function() {
       return false;
     }
   );
+
+  $("#categories_search input").keyup(function() {
+    $.get($("#categories_search").attr("action"), $("#categories_search").serialize(), null, "script");
+    return false;
+  });
+
+  $('#categories_div th a, #categories_div .pagination a').live('click', 
+    function () {
+      $.getScript(this.href);
+      return false;
+    }
+  );
 });
