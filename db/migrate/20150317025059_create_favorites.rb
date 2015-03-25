@@ -8,5 +8,6 @@ class CreateFavorites < ActiveRecord::Migration
     end
     add_foreign_key :favorites, :books
     add_foreign_key :favorites, :users
+    add_index :favorites, [:book_id, :user_id], unique: true
   end
 end
