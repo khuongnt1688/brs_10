@@ -20,6 +20,13 @@
           <%= link_to "change", new_or_edit_book_book_state_path(@book, @book_state), remote: true %>
         </div>
         <div id="book_state_form" class="col-md-12"></div>
+        <div id="favorite_state" class="col-md-12">
+          <%= "Favorite: #{current_user.favorite? @book}" %>
+        </div>
+        <div id="favorite_form" class="col-md-12">
+          <%= render current_user.favorite?(@book)  ? "favorites/remove_favorite" 
+                                                    : "favorites/add_favorite" %>
+        </div>
       </div>
     </div>
     <div class="col-md-12">

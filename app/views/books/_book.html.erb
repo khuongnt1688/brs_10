@@ -2,4 +2,5 @@
   <td><div class="col-md-12"><%= link_to book.title, book %></div></td>
   <td><div class="col-md-12"><%= book.author %></div></td>
   <td><div class="col-md-12"><%= book.state current_user %></div>
+  <td><div class="col-md-12"><%= current_user.favorite? book %></div>
 </tr>

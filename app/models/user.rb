@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :book_states, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :name, length: {maximum: 100}        
   validates :avatar, presence: false, length: {maximum: 300}
@@ -30,5 +31,8 @@ class User < ActiveRecord::Base
   def is_user? user
     self == user
   end
-  
+
+  def favorite? book
+    !self.favorites.find_by(book: book).nil?
+  end
 end
