@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     root 'static_pages#home'
     resources :users
     resources :categories
+    resources :requests
   end
 end
