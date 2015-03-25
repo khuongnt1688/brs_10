@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :users do
     get 'history' => 'book_states#index'
+    resources :requests
   end
   resources :categories do
     resources :books
