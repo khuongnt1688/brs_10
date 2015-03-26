@@ -4,7 +4,7 @@ User.create!(name:  "Example User",
              password_confirmation: "foobar",
              role: "admin")
 
-10.times do |n|
+99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n + 1}@railstutorial.org"
   password = "password"
@@ -34,3 +34,11 @@ end
   content = Faker::Lorem.paragraph
   Review.create! user: User.first, book: Book.first, content: content, rating: 5
 end
+
+# Following relationships
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each {|followed| user.follow(followed)}
+followers.each {|follower| follower.follow(user)}

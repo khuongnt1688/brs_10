@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   root  'static_pages#home'
   
@@ -6,11 +7,16 @@ Rails.application.routes.draw do
   get   'about'   => 'static_pages#about'
   get   'contact' => 'static_pages#contact'
 
+  match '/users/:id/:type', to: 'users#show', via: :get
+
   resources :users do
     get 'history' => 'book_states#index'
     resources :requests
     resources :favorites
   end
+
+  resources :relationships, only: [:create, :destroy]
+
   resources :categories do
     resources :books
   end

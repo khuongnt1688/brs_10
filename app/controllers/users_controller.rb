@@ -6,8 +6,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
-  end
+    @user = User.find params[:id]
+
+    if !params[:type].blank? && ['following', 'followers'].include?(params[:type])
+      @title = params[:type]
+      @users = @user.send(params[:type])
+      @users = @users.paginate page: params[:page]
+      render 'show_follow' 
+    end
+  end   
 
   def edit
     @user = current_user
