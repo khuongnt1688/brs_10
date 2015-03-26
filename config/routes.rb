@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :users
   root  'static_pages#home'
   
@@ -33,5 +32,6 @@ Rails.application.routes.draw do
     resources :users
     resources :categories
     resources :requests
+    resources :books
   end
 end

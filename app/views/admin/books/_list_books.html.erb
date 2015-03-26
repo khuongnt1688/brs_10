@@ -1,0 +1,28 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<h1>Listing books</h1>
+
+<% if @books.any? %>
+
+  <%= will_paginate @books %>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th><%= sortable "title" %></th>
+        <th><%= sortable "author" %></th>
+        <th>Action</th>
+      </tr>
+    </thead>  
+    <tbody class="book-index">
+      <%= render @books %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @books %>
+  
+<% else %>
+  <h2 style="center">Empty</h2>
+<% end %>
