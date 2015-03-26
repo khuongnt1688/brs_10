@@ -4,12 +4,16 @@ class CommentsController < ApplicationController
 
   def create
     @review = Review.find params[:review_id]
-    @comment = current_user.comments.build comment_params
+    @comment = Comment.new comment_params
+    @comment = current_user
     @comment.review = @review
-    @comment.save
-    respond_to do |format|
-      format.html {redirect_to @review}
-      format.js 
+    if @comment.save
+      Activity.create(user: current_user, 
+                      target_id: @comment.id, 
+                      action_type: "comment")
+      respond_to do |format|
+        format.js 
+      end
     end
   end
 

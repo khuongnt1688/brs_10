@@ -8,6 +8,9 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     @review.book = @book
     if @review.save
+      Activity.create(user: current_user, 
+                      target_id: @review.id, 
+                      action_type: "review")
       respond_to do |format|
         format.html {redirect_to @book}
         format.js

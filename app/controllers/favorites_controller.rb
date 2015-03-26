@@ -10,6 +10,9 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new favorite_params
     @favorite.user = current_user
     if @favorite.save
+      Activity.create(user: current_user,
+                      target_id: @favorite.book.id,
+                      action_type: "favorite")
       respond_to do |format|
         format.js
       end
@@ -18,6 +21,9 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite = Favorite.find params[:id]
+    Activity.create(user: current_user,
+                    target_id: @favorite.book.id,
+                    action_type: "unfavorite")
     @favorite.destroy
     respond_to do |format|
       format.js

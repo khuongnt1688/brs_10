@@ -8,6 +8,9 @@ class RequestsController < ApplicationController
     @request.state = "waiting"
     if @request.save
       flash[:success] = "Request sent!"
+      Activity.create(user: current_user,
+                      target_id: @request.id,
+                      action_type: "request")
     else
       flash[:error] = "Request failed!"
     end
