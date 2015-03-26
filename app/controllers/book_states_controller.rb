@@ -20,6 +20,9 @@ class BookStatesController < ApplicationController
     @book_state.user = current_user
     @book_state.book = @book
     if @book_state.save
+      Activity.create(user: current_user,
+                      target_id: @book.id,
+                      action_type: @book_state.state)
       respond_to do |format|
         format.js 
       end
