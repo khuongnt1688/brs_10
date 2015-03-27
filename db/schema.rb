@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150326061028) do
   end
 
   add_index "likes", ["activity_id"], name: "index_likes_on_activity_id"
+  add_index "likes", ["user_id", "activity_id"], name: "index_likes_on_user_id_and_activity_id", unique: true
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
   create_table "photos", force: :cascade do |t|

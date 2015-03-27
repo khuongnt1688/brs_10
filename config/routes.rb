@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   resources :reviews do
     resources :comments
   end
+  resources :activities do
+    resources :likes, only: [:create, :destroy]
+  end
 
   namespace :admin do
     root 'static_pages#home'

@@ -1,6 +1,22 @@
 <li id="activity-<%= activity.id %>">
   <%= link_to activity.user.name, activity.user %>
   <span class="content"><%= activity.message %></span>
+  <span>
+    <div id="activity-<%= activity.id %>-like-count">
+      <%= activity.likes.count %> people like this
+    </div>
+    <div id="activity-<%= activity.id %>-like">
+      <%= current_user.like?(activity) ? 
+            link_to("unlike", 
+                    [activity, current_user.likes.find_by(activity: activity)], 
+                    method: :delete,
+                    remote: true) :
+            link_to("like", 
+                    [activity, Like.new], 
+                    method: :post,
+                    remote: :true) %>
+    </div>
+  </span>
   <span class="timestamp">
     <%= time_ago_in_words(activity.created_at) %> ago.
   </span>
