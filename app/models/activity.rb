@@ -10,7 +10,7 @@ class Activity < ActiveRecord::Base
     case self.action_type
     when "review"
       review = Review.find self.target_id
-      return message + " write a review on #{self.review.book}"
+      return message + " write a review on #{review.book.title}"
     when "comment"
       comment = Comment.find self.target_id
       return message + " commented on a post: #{comment.content}"
@@ -21,6 +21,7 @@ class Activity < ActiveRecord::Base
       unfollow_user = User.find self.target_id
       return message + " unfollowed #{unfollow_user.name}"
     when "read", "reading", "unread"
+      book = Book.find self.target_id
       return message + " marked #{book.title} as #{self.action_type}"
     when "favorite"
       book = Book.find self.target_id
@@ -37,4 +38,6 @@ class Activity < ActiveRecord::Base
                 of #{self.user.name}"
     end
   end
+
+  scope :user_activity, -> user {where(user_id: user.following_ids + [user.id])}
 end

@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def create
     @review = Review.find params[:review_id]
     @comment = Comment.new comment_params
-    @comment = current_user
+    @comment.user = current_user
     @comment.review = @review
     if @comment.save
       Activity.create(user: current_user, 

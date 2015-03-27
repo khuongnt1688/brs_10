@@ -53,4 +53,8 @@ class User < ActiveRecord::Base
   def to_param
     [id, name.parameterize].join("-")
   end
+
+  def following_ids
+    self.following.pluck :id
+  end
 end

@@ -8,5 +8,6 @@ class CreateActivities < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :activities, :users
+    add_index :activities, [:user_id, :created_at]
   end
 end
