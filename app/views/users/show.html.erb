@@ -10,8 +10,23 @@
     <section class="stats">
       <%= render 'devise/shared/stats' %>
     </section>
+    <section>
+    <ul>
+      <li><a href="<%= user_path @user %>/history" >Show reading history</a></li>
+      <li><a href="<%= user_favorites_path @user %>" >Show favorite books</a></li>
+      <li><a href="<%= user_requests_path @user %>" >Show list of requests or Make a request</a></li>
+
+    </ul>  
+    </section>  
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if user_signed_in? %>
+    <% if @activities.any? %>
+      <h3>Activities</h3>
+      <ol class="entries">
+        <%= render @activities %>
+      </ol>
+      <%= will_paginate @activities %>
+    <% end %>
   </div>
 </div>

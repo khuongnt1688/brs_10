@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @activities = Activity.user_activity(current_user).paginate page: params[:page], per_page: 10
 
     if !params[:type].blank? && ['following', 'followers'].include?(params[:type])
       @title = params[:type]
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
       @users = @users.paginate page: params[:page]
       render 'show_follow' 
     end
+
   end   
 
   def edit

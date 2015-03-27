@@ -7,14 +7,13 @@ Rails.application.routes.draw do
   get   'about'   => 'static_pages#about'
   get   'contact' => 'static_pages#contact'
 
-  match '/users/:id/:type', to: 'users#show', via: :get
-
   resources :users do
     get 'history' => 'book_states#index'
     resources :requests
     resources :favorites
   end
 
+  match '/users/:id/:type', to: 'users#show', via: :get
   resources :relationships, only: [:create, :destroy]
 
   resources :categories do
@@ -34,4 +33,6 @@ Rails.application.routes.draw do
     resources :categories
     resources :requests
   end
+
+  resources :activities
 end
