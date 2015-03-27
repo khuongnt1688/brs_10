@@ -8,5 +8,6 @@ class CreateLikes < ActiveRecord::Migration
     end
     add_foreign_key :likes, :users
     add_foreign_key :likes, :activities
+    add_index :likes, [:user_id, :activity_id], unique: true
   end
 end

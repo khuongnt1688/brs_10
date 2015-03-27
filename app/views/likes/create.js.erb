@@ -1,0 +1,5 @@
+$("#activity-<%= @activity.id %>-like-count").html("<%= @activity.likes.count %> people like this");
+$("#activity-<%= @activity.id %>-like").html("<%= j link_to('unlike', 
+                                                      [@activity, current_user.likes.find_by(activity: @activity)], 
+                                                      method: :delete, 
+                                                      remote: true) %>");

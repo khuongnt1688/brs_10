@@ -22,8 +22,7 @@ $(function() {
     return false;
   });
 
-  $('#books_div th a, #books_div .pagination a').live('click', 
-    function () {
+  $(document).on('click', '#books_div th a, #books_div .pagination a', function () {
       $.getScript(this.href);
       return false;
     }
@@ -34,8 +33,7 @@ $(function() {
     return false;
   });
 
-  $('#users_div th a, #users_div .pagination a').live('click', 
-    function () {
+  $(document).on('click', '#users_div th a, #users_div .pagination a', function () {
       $.getScript(this.href);
       return false;
     }
@@ -46,8 +44,7 @@ $(function() {
     return false;
   });
 
-  $('#categories_div th a, #categories_div .pagination a').live('click', 
-    function () {
+  $(document).on('click', '#categories_div th a, #categories_div .pagination a', function () {
       $.getScript(this.href);
       return false;
     }

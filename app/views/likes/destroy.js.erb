@@ -1,0 +1,5 @@
+$("#activity-<%= @like.activity.id %>-like-count").html("<%= @like.activity.likes.count %> people like this");
+$("#activity-<%= @like.activity.id %>-like").html("<%= j link_to('like', 
+                                                          [@like.activity, Like.new], 
+                                                          method: :post, 
+                                                          remote: :true) %>");
