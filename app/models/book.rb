@@ -3,17 +3,23 @@ class Book < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :book_states, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+  has_many :photos, dependent: :destroy
+
   validates :title, presence: true, length: {maximum: 100}
   validates :publish_date, presence: true
   validates :author, presence: true, length: {maximum: 150}
   validates :number_of_pages, presence: true
+  validates :category, presence: true
+
+  accepts_nested_attributes_for :photos, reject_if: :all_blank, allow_destroy: true
+
+  mount_uploader :image, PictureUploader
 
   def self.search(search, filter)
     if search
-      if filter = 1
+      if filter == "1"
         where('title LIKE ?', "%#{search}%")
-      elsif filter = 2
+      elsif filter == "2"
         where('author LIKE ?', "%#{search}%")
       end 
     else

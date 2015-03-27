@@ -1,0 +1,37 @@
+<% provide(:title, "Manage Books") %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <div div class="col-md-12">
+      <%= form_tag admin_books_path, method: 'get', id: "books_search" do %>
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
+        <div class="col-md-12 well">
+          <div class="col-md-1">
+            <label>Search</label>
+          </div>
+          <div class="col-md-6">
+            <%= text_field_tag :search, params[:search] %>
+          </div>
+          <div class="col-md-3">
+            <%= select_tag("filter", options_for_select([['Title', 1], ['Author', 2]], 1)) %>
+          </div>
+          <div class="col-md-2">
+            <%= submit_tag "Search", class: "btn" %>
+          </div>
+        </div>  
+        <div class="col-md-12">
+          <div id="books_div"><%= render 'list_books' %></div>
+        </div>
+      <% end %>
+    </div>
+    <div div class="col-md-12">
+      <%= link_to "add new book", new_admin_book_path, class: "btn btn-primary"%>
+    </div>
+  </div>
+</div>
