@@ -1,2 +1,2 @@
-$('#comments').html("<%= j render @review.comments %>");
+$('#comment-<%= @comment.id %>').remove();
 $('#count').html("Comments (<%= @review.comments.count %>)");

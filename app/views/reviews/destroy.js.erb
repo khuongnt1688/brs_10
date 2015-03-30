@@ -1,1 +1,2 @@
-$('#count').html("Has <%= @book.reviews.count %> reviews");
+$("#review-<%= @review.id %>").remove();
+$("#count").html("Has <%= @review.book.reviews.count %> reviews");

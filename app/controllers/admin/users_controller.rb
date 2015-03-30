@@ -13,6 +13,8 @@ class Admin::UsersController < AdminController
 
   def destroy
     @user = User.find params[:id]
+    Activity.destroy_all(target_id: @user.id,
+        action_type: ["follow", "unfollow"])
     @user.destroy
   end
 

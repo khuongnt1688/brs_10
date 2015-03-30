@@ -1,13 +1,15 @@
 <% provide :title, "Request" %>
 <h1>Make request</h1>
-<%= form_for [current_user, Request.new], remote: true do |f| %>
-  <%= f.label :book_name %>
-  <%= f.text_field :book_name %>
-  <%= f.label :author %>
-  <%= f.text_field :author %>
-  <%= f.label :book_url %>
-  <%= f.text_field :book_url %>
-  <%= f.submit "Send request", class:"btn btn-primary" %>
+<% if @user.is_user? current_user %>
+  <%= form_for [@user, Request.new], remote: true do |f| %>
+    <%= f.label :book_name %>
+    <%= f.text_field :book_name %>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+    <%= f.label :book_url %>
+    <%= f.text_field :book_url %>
+    <%= f.submit "Send request", class:"btn btn-primary" %>
+  <% end %>
 <% end %>
 <h1>Request list</h1>
 <table id="requests" class="table table-bordered table-striped">
@@ -21,6 +23,6 @@
     </tr>
   </thead>  
   <tbody>
-    <%= render current_user.requests %>
+    <%= render @user.requests %>
   </tbody>
 </table>

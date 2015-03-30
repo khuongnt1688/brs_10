@@ -12,7 +12,6 @@ class ReviewsController < ApplicationController
                       target_id: @review.id, 
                       action_type: "review")
       respond_to do |format|
-        format.html {redirect_to @book}
         format.js
       end
     end
@@ -20,6 +19,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find params[:id]
+    Activity.destroy_all target_id: @review.id, action_type: "review"
     @review.destroy
     respond_to do |format|
       format.js

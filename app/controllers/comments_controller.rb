@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user!,  only: [:destroy, :edit, :update]
+  respond_to :js
 
   def create
     @review = Review.find params[:review_id]
@@ -11,30 +12,20 @@ class CommentsController < ApplicationController
       Activity.create(user: current_user, 
                       target_id: @comment.id, 
                       action_type: "comment")
-      respond_to do |format|
-        format.js 
-      end
     end
   end
 
   def destroy
     @review = Review.find params[:review_id]
     @comment = Comment.find params[:id]
+    Activity.destroy_all target_id: @comment.id, action_type: "comment"
     @comment.destroy
-    respond_to do |format|
-      format.html {redirect_to @review}
-      format.js 
-    end
   end
 
   def update
     @review = Review.find params[:review_id]
     @comment = Comment.find params[:id]
     @comment.update_attributes comment_params
-    respond_to do |format|
-      format.html {redirect_to @review}
-      format.js 
-    end
   end
 
   private
