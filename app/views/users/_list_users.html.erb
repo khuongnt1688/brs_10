@@ -1,0 +1,23 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<h1>Listing Users</h1>
+
+<% if @users.any? %>
+  <%= will_paginate @users %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><div class="col-md-12"> Avatar </div></th>
+        <th><div class="col-md-12"><%= sortable "name" %></div></th>
+      </tr>
+    </thead>  
+    <tbody class="user-index">
+      <%= render @users %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @users %>
+<% else %>
+  <h2 style="center">Empty</h2>
+<% end %>
