@@ -40,6 +40,8 @@ class Admin::BooksController < AdminController
 
   def destroy
     @book = Book.find params[:id]
+    Activity.destroy_all(target_id: @book.id, 
+        action_type: ["read", "reading", "unread", "favorite", "unfavorite"])
     @book.destroy
   end
 
