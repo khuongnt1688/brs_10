@@ -15,13 +15,13 @@ class Book < ActiveRecord::Base
 
   mount_uploader :image, PictureUploader
 
-  def self.search(search, filter)
+  def self.search(search, filter, category)
     if search
-      if filter == "1"
-        where('title LIKE ?', "%#{search}%")
-      elsif filter == "2"
-        where('author LIKE ?', "%#{search}%")
-      end 
+      if category.blank?
+        where("#{filter} LIKE ?", "%#{search}%")
+      else
+        where("category_id = ? AND #{filter} LIKE ?", "#{category}", "%#{search}%")
+      end
     else
       all
     end

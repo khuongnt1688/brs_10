@@ -22,11 +22,15 @@
             <%= submit_tag "Search", class: "btn btn-primary" %>
           </div>
           <div class="col-md-1"></div>
-        </div>  
+        </div>
         <div class="col-md-12">
           <div id="categories_div"><%= render 'list_categories' %></div>
         </div>
       <% end %>
+    </div>
+    <div div class="col-md-12">
+      <%= link_to "add new category", new_admin_category_path, class: "btn btn-primary" %>
+      <%= link_to "add new book", new_admin_book_path, class: "btn btn-info"%>
     </div>
   </div>
 </div>

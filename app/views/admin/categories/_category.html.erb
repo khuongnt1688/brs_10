@@ -9,6 +9,7 @@
   </td>
   <td>
   <div class="col-md-12">
+    <%= link_to "edit", edit_admin_category_path(category), class: "btn btn-success" %>
     <%= link_to "delete", admin_category_path(category), method: :delete,
     class: "btn btn-danger", remote: true, data: {confirm: "you sure?"} %>
   </div>

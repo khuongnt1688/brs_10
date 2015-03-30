@@ -3,14 +3,9 @@ class Admin::BooksController < AdminController
   respond_to :html, :js
 
   def index
-    if params[:category_id].blank?
-      @books = Book.search(params[:search], params[:filter] ).order(sort_column + ' ' + sort_direction)
-      @books = @books.paginate page: params[:page], per_page: 20
-    else
-      category = Category.find params[:category_id]
-      @books = category.books.search(params[:search], params[:filter] ).order(sort_column + ' ' + sort_direction)
-      @books = @books.paginate page: params[:page], per_page: 20
-    end
+    @books = Book.search params[:search], params[:filter], params[:category_id]
+    @books = @books.order sort_column + ' ' + sort_direction
+    @books = @books.paginate page: params[:page], per_page: 20
   end
 
   def new

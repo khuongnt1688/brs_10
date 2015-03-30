@@ -4,14 +4,21 @@
 <h1>Listing books</h1>
 
 <% if @books.any? %>
-  <table>
-    <tr>
-      <th><div class="col-md-12">title</div></th>
-      <th><div class="col-md-12">author</div></th>
-      <th><div class="col_md_12">State</div></th>
-      <th><div class="col_md_12">Favorite</div></th>
-    </tr>
-    <%= render @books %>
+  <%= will_paginate @books %>
+  
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><div class="col_md_12">Cover</div></th>
+        <th><div class="col-md-12"><%= sortable "title" %></div></th>
+        <th><div class="col-md-12"><%= sortable "author" %></div></th>
+        <th><div class="col_md_12">State</div></th>
+        <th><div class="col_md_12">Favorite</div></th>
+      </tr>
+    </thead>  
+    <tbody class="book-index">
+      <%= render @books %>
+    </tbody>
   </table>
 
   <%= will_paginate @books %>

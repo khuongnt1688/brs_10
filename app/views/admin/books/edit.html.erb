@@ -5,43 +5,48 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <div class="col-md-8">
-      <%= form_for [:admin, @book], html: {multipart: true} do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+    <div class="col-md-12">
+      <div class="col-md-8">
+        <%= form_for [:admin, @book], html: {multipart: true} do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
 
-        <%= f.select :category_id, Category.all.collect{|c| [c.content, c.id]}, include_blank: true %>
+          <%= f.select :category_id, Category.all.collect{|c| [c.content, c.id]}, include_blank: true %>
 
-        <%= f.label :title %>
-        <%= f.text_field :title, class: 'form-control' %>
+          <%= f.label :title %>
+          <%= f.text_field :title, class: 'form-control' %>
 
-        <%= f.label :author %>
-        <%= f.text_field :author, class: 'form-control' %>
+          <%= f.label :author %>
+          <%= f.text_field :author, class: 'form-control' %>
 
-        <%= f.label "Number of page" %>
-        <%= f.number_field :number_of_pages, in: 1...1000, class: 'form-control' %>
+          <%= f.label "Number of page" %>
+          <%= f.number_field :number_of_pages, in: 1...1000, class: 'form-control' %>
 
-        <%= f.label :publish %>
-        <%= f.date_select :publish_date, class: 'form-control' %>
+          <%= f.label :publish %>
+          <%= f.date_select :publish_date, class: 'form-control' %>
 
-        <%= f.label :Cover %>
-        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+          <%= f.label :Cover %>
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
 
-        <%= f.label "Current Image" %>
-        <%= f.fields_for :photos do |builder| %>
-          <%= render 'current_fields', f: builder %>
+          <%= f.label "Current Image" %>
+          <%= f.fields_for :photos do |builder| %>
+            <%= render 'current_fields', f: builder %>
+          <% end %>
+
+          <label>New Image</label>
+          <p>
+            <%= link_to_add_fields "Add Image", f, :photos %>
+          </p>
+          
+          <%= f.submit "Edit Book", class: "btn btn-primary" %>
         <% end %>
-
-        <label>New Image</label>
-        <p>
-          <%= link_to_add_fields "Add Image", f, :photos %>
-        </p>
-        
-        <%= f.submit "Edit Book", class: "btn btn-primary" %>
-      <% end %>
+      </div>
+      <div class="col-md-4">
+        <label>Current Cover</label>
+          <%= image_tag "#{@book.image}", size:"128x128", alt: "Current Cover", class: "img-polaroid" %>
+      </div>
     </div>
-    <div class="col-md-4">
-      <label>Current Cover</label>
-        <%= image_tag "#{@book.image}", size:"128x128", alt: "Current Cover", class: "img-polaroid" %>
+    <div class="col-md-12">
+      <%= link_to "manage books", admin_books_path %>
     </div>
   </div>
 </div>

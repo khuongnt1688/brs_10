@@ -1,6 +1,6 @@
 <tr id="book_<%= book.id %>">
   <td>
-    <%= image_tag "#{book.image}", size: "32x32", alt: "Category", class: "img-rounded" %>
+    <%= image_tag "#{book.image}", size: "32x32", alt: "Book", class: "img-rounded" %>
   </td>
   <td><%= link_to book.title, edit_admin_book_path(book) %></td>
   <td><%= book.author %></td>

@@ -8,23 +8,20 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <%= form_tag books_path, method: 'get', id: "books_search" do %>
+    <%= form_tag books_path, method: 'get', id: "books_search" do |f| %>
       <%= hidden_field_tag :direction, params[:direction] %>
       <%= hidden_field_tag :sort, params[:sort] %>
-      <div class="col-md-12">
-        <div class="col-md-1">
-          Search
-        </div>
+      <div class="col-sm-12 well">
         <div class="col-md-6">
-          <%= text_field_tag :search, params[:search] %>
-        </div>
-        <div class="col-md-3">
-          <%= select_tag("filter", options_for_select([['Title', 1], ['Author', 2]], 1)) %>
+          <%= text_field_tag :search, params[:search], placeholder: 'Enter search term...' %>
         </div>
         <div class="col-md-2">
-          <%= submit_tag "Search", :name => nil %>
+          <%= select_tag("filter", options_for_select([['Title', 'title'], ['Author', 'author']])) %>
         </div>
-      </div>  
+        <div class="col-md-4">
+          <%= select_tag "category_id", options_from_collection_for_select(Category.all, :id, :content), prompt: "Select category" %>
+        </div>
+      </div>
       <div class="col-md-12">
         <div id="books_div"><%= render 'list_books' %></div>
       </div>

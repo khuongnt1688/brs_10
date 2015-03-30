@@ -3,7 +3,8 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: :show
 
   def index
-    @books = Book.search(params[:search], params[:filter] ).order(sort_column + ' ' + sort_direction)
+    @books = Book.search params[:search], params[:filter], params[:category_id]
+    @books = @books.order sort_column + ' ' + sort_direction
     @books = @books.paginate page: params[:page], per_page: 10
   end
 
