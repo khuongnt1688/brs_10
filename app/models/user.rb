@@ -24,11 +24,11 @@ class User < ActiveRecord::Base
   validates :avatar, presence: false, length: {maximum: 300}
   validates :role, presence: true, length: {maximum: 50}
 
+  scope :search_by, ->name {where('name LIKE ?', "%#{name}%")}
+
   def is_admin?
     role == 'admin'
   end
-
-  scope :search_by, ->name {where('name LIKE ?', "%#{name}%")}
 
   def is_user? user
     self == user

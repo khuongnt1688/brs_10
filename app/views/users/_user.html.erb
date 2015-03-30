@@ -1,4 +1,12 @@
-<li>
-  <%= user.avatar %>
-  <%= link_to user.name, user %>
-</li>
+<% unless current_user == user %>
+  <tr id="user_<%= user.id %>">
+    <td>
+      <%= image_tag "#{user.avatar}", size: "32x32", alt: "User", class: "img-rounded" %>
+    </td>
+    <td>
+      <div class="col-md-12">
+        <%= link_to user.name, user_path(user) %>
+      </div>
+    </td>
+  </tr>
+<% end %>
