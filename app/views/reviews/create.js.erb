@@ -1,4 +1,5 @@
 $('#reviews').append("<%= j render @review %>");
+$('#rate-book').html("<%= @book.reviews.average(:rating).round 2 %>");
 $('#count').html("Has <%= @book.reviews.count %> reviews");
 $('#review_rating').val("");
 $('#review_content').val("");

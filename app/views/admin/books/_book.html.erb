@@ -4,6 +4,7 @@
   </td>
   <td><%= link_to book.title, edit_admin_book_path(book) %></td>
   <td><%= book.author %></td>
+  <td><%= book.average_rating.round 2 if book.reviews.any? %></td>
   <td>
     <%= link_to "edit", edit_admin_book_path(book), class: "btn btn-success" %>
     <%= link_to "delete", admin_book_path(book), method: :delete,

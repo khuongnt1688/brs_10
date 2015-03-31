@@ -15,15 +15,19 @@
         <img id="book-image" src="<%= @book.image %>" />
       </div>
       <div class="col-md-8">
-        <div class="col-md-12">Title : <%= @book.title %></div>
-        <div class="col-md-12">Author : <%= @book.author %></div>
+        <div class="col-md-12"><label>Title : </label><%= @book.title %></div>
+        <div class="col-md-12"><label>Author : </label><%= @book.author %></div>
         <div class="col-md-12">
-          <span id="book_state">State : <%= @book.state current_user %></span>
+          <label>Rate : </label>
+          <span id="rate-book"><%= @book.average_rating.round 2 %></span>
+        </div>
+        <div class="col-md-12">
+          <span id="book_state"><label>State : </label><%= @book.state current_user %></span>
           <%= link_to "change", new_or_edit_book_book_state_path(@book, @book_state), remote: true %>
         </div>
         <div id="book_state_form" class="col-md-12"></div>
         <div id="favorite_state" class="col-md-12">
-          <%= "Favorite: #{current_user.favorite? @book}" %>
+          <label>Favorite : </label><%= "#{current_user.favorite? @book}" %>
         </div>
         <div id="favorite_form" class="col-md-12">
           <%= render current_user.favorite?(@book)  ? "favorites/remove_favorite" 

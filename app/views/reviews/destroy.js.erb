@@ -1,2 +1,3 @@
 $("#review-<%= @review.id %>").remove();
+$("#rate-book").html("<%= @review.book.reviews.average(:rating).round 2 %>");
 $("#count").html("Has <%= @review.book.reviews.count %> reviews");
