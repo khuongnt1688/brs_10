@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true, length: {maximum: 100}        
-  validates :avatar, presence: false, length: {maximum: 300}
   validates :role, presence: true, length: {maximum: 50}
+  mount_uploader :avatar, PictureUploader
 
   scope :search_by, ->name {where('name LIKE ?', "%#{name}%")}
 
