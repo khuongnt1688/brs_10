@@ -1,7 +1,7 @@
 <% unless current_user == user %>
   <tr id="user_<%= user.id %>">
     <td>
-      <%= image_tag "#{user.avatar}", size: "32x32", alt: "User", class: "img-rounded" %>
+      <%= image_tag user.avatar, size: "32x32", alt: "User", class: "img-rounded" unless user.avatar.blank? %>
     </td>
     <td>
       <div class="col-md-12">
