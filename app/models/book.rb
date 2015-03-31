@@ -31,4 +31,8 @@ class Book < ActiveRecord::Base
     book_state = BookState.find_by book: self, user: user
     book_state.nil? ? "unread" : book_state.state
   end
+
+  def average_rating
+    self.reviews.average :rating
+  end
 end
