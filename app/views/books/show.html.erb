@@ -19,7 +19,7 @@
         <div class="col-md-12"><label>Author : </label><%= @book.author %></div>
         <div class="col-md-12">
           <label>Rate : </label>
-          <span id="rate-book"><%= @book.average_rating.round 2 %></span>
+          <span id="rate-book"><%= @book.average_rating.round 2 if @book.reviews.any? %></span>
         </div>
         <div class="col-md-12">
           <span id="book_state"><label>State : </label><%= @book.state current_user %></span>
