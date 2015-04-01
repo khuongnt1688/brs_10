@@ -10,7 +10,7 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <div class="col-md-12">
+    <div class="col-md-12 well">
       <div class="col-md-4">
         <img id="book-image" src="<%= @book.image %>" />
       </div>
@@ -36,13 +36,24 @@
       </div>
     </div>
     <div class="col-md-12">
+      <h3>Images</h3>
+        <strong>
+          <div id="count">Has <%= @book.photos.count %> images</div>
+        </strong>
+        <div class="col-md-12 well">
+          <%= render @book.photos %>
+        </div>
+    </div>
+    <div class="col-md-12">
       <h3>Reviews</h3>
         <strong><div id="count">Has <%= @reviews.count %> reviews</div></strong>
-        <div id="reviews">
+        <div id="reviews" class="col-md-12 well">
           <%= render @reviews %>
         </div>
       <h3>Write your review</h3>
-      <%= render "reviews/form" %>
+      <div class="col-md-12 well">
+        <%= render "reviews/form" %>
+      </div>
     </div>
   </div>
 </div> 
