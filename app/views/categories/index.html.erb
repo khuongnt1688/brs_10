@@ -1,12 +1,25 @@
 <% provide :title, "All Categories" %>
 <h1>All Categories</h1>
-
-<%= will_paginate %>
-
-<ul class="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
+<div class="col-md-8">
+  <%= form_tag categories_path, method: 'get', id: "categories_search" do %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <div class="col-md-12">
+      <div class="col-md-1">
+        Search
+      </div>
+      <div class="col-md-6">
+        <%= text_field_tag :search, params[:search] %>
+      </div>
+      <div class="col-md-2">
+        <%= submit_tag "Search", :content => nil %>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div id="categories_div"><%= render 'list_categories' %></div>
+    </div>
   <% end %>
-</ul>
+</div>
 
-<%= will_paginate %>
+
+

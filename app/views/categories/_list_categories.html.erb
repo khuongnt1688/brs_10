@@ -1,0 +1,14 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<h1>Listing categories</h1>
+<% if @categories.any? %>
+  <table>
+    <tr>
+      <th><div class="col-md-12"><%= sortable "image" %></div></th>
+      <th><div class="col-md-12"><%= sortable "content" %></div></th>
+    </tr>
+    <%= render @categories %>
+</table>
+<% else %>
+<h2 style="center">Empty</h2>
+<% end %>
