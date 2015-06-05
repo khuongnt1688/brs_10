@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true, length: {maximum: 100}        
+  validates :email, presence: true, uniqueness: true, length: {maximum:50}
   validates :role, presence: true, length: {maximum: 50}
   mount_uploader :avatar, PictureUploader
 
